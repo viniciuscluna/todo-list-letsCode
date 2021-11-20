@@ -1,0 +1,7 @@
+<mat-card mat-car color="dark" cols="12" style="margin-bottom: 10px;">
+    <mat-checkbox [checked]="task?.Done || false" (change)="changeDone(task)"></mat-checkbox>
+    {{task?.Name}}
+    <button mat-button color="warn" (click)="delete(task)">
+        <mat-icon>delete</mat-icon>
+    </button>
+</mat-card>
