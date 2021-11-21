@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable } from 'rxjs';
 import { LocalUtilsService } from 'src/app/services/local-utils.service';
 import { ITask } from '../../models/ITask'
 
@@ -10,20 +11,31 @@ import { ITask } from '../../models/ITask'
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit, OnDestroy {
-  tasks: ITask[] = [];
 
+  constructor(private localStorageUtils: LocalUtilsService) { }
+
+  tasks$?: Observable<ITask[]>;
+  tasks: ITask[] = []
+
+  updateInterval: ReturnType<typeof setInterval> = setInterval(() => {
+    this.tasks$?.subscribe((resp: ITask[]) => {
+        this.localStorageUtils.updateAll(resp)
+        this.tasks = resp
+    })
+
+  }, 1000);
   delete(task: ITask) {
     const idx = this.tasks.indexOf(task)
     this.tasks.splice(idx, 1)
   }
-  constructor(private localStorageUtils: LocalUtilsService) { }
+
 
   ngOnInit(): void {
-    this.tasks = this.localStorageUtils.getTasks()
+    this.tasks$ = this.localStorageUtils.getTasksPipe()
   }
 
   ngOnDestroy(): void {
-    this.localStorageUtils.updateAll(this.tasks)
+    clearInterval(this.updateInterval)
   }
 
 }

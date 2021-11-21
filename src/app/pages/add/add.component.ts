@@ -1,7 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ITask } from 'src/app/models/ITask';
 import { LocalUtilsService } from 'src/app/services/local-utils.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-add',
@@ -18,7 +20,8 @@ export class AddComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private localUtils: LocalUtilsService
+    private localUtils: LocalUtilsService,
+    private router : Router
   ) {}
 
   onSubmit(): void {
@@ -26,5 +29,6 @@ export class AddComponent {
     console.warn('Your order has been submitted', this.taskForm.value);
     this.localUtils.setTask({Name: this.taskForm.value.name, Done:false} as ITask)
     this.taskForm.reset();
+    this.router.navigate(["/"])
   }
 }

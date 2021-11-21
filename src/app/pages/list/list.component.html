@@ -1,5 +1,5 @@
 
 <div  style="padding: 20px;">
-    <app-list-item *ngFor="let task of tasks" [task]="task" (warnDelete)="delete(task)"></app-list-item>
+    <app-list-item *ngFor="let task of tasks$ | async" [task]="task" (warnDelete)="delete(task)"></app-list-item>
 </div>
 

@@ -1,7 +1,33 @@
 <mat-card mat-car color="dark" cols="12" style="margin-bottom: 10px;">
     <mat-checkbox [checked]="task?.Done || false" (change)="changeDone(task)"></mat-checkbox>
-    {{task?.Name}}
+  
+    <div *ngIf="!edited" style="display: inline;">
+        {{task?.Name}}
+        <button mat-button color="warn" (click)="edit(task)"  >
+            <mat-icon>edit</mat-icon>
+        </button>
+    </div>
+    <div *ngIf="edited">
+        <form [formGroup]="editForm" (ngSubmit)="saveEdit()" style="display: inline;">
+
+            <div style="display: inline;">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Task Name:</mat-label>
+                    <input id="name" matInput placeholder="Nome of the Task" formControlName="name">
+                </mat-form-field>
+    
+            </div>
+    
+            <button mat-button color="warn" type="submit">
+                <mat-icon>check</mat-icon>
+            </button>
+    
+        </form>
+       
+    </div>
+ 
     <button mat-button color="warn" (click)="delete(task)">
         <mat-icon>delete</mat-icon>
     </button>
+
 </mat-card>
