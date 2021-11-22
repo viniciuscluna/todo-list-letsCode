@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddComponent } from './pages/add/add.component';
 import { ListComponent } from './pages/list/list.component';
-import { DeleteComponent } from './pages/delete/delete.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { ListItemComponent } from './pages/list/list-item/list-item.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,7 +16,6 @@ import { LoginComponent } from './pages/login/login.component';
     AppComponent,
     AddComponent,
     ListComponent,
-    DeleteComponent,
     HeaderComponent,
     ListItemComponent,
     LoginComponent

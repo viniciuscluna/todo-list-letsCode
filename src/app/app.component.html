@@ -1,9 +1,9 @@
-<div style="display: inline;" *ngIf="isAuthenticated">
+<div class="inline" *ngIf="isAuthenticated">
     <app-header></app-header>
     <router-outlet></router-outlet>
 </div>
 
 
-<div style="display: inline;" *ngIf="!isAuthenticated">
+<div class="inline" *ngIf="!isAuthenticated">
     <app-login></app-login>
 </div>
